@@ -3,50 +3,49 @@ package com.example.internship.internship.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="feedback")
+@Table(name = "feedback")
 public class Feedback {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="course_id")
-    private Long courseId;
+    @Column(name = "course_id")
+    private int courseid;
 
-    @Column(name="relate_rating")
-    private int relateRating;
+    @Column(name = "relevant_and_helpful")
+    private int relevantAndHelpful;
 
-    @Column(name="delivery_rating")
-    private int deliveryRating;
+    @Column(name = "clear_and_understandable")
+    private int clearAndUnderstandable;
 
-    @Column(name="confidence_rating")
-    private int confidenceRating;
+    @Column(name = "confident_in_applying")
+    private int confidentInApplying;
 
-    @Column(name="trainer_rating")
+    @Column(name = "trainer_rating")
     private int trainerRating;
 
-    @Column(name="enjoyment")
+    @Column(name = "enjoyment")
     private String enjoyment;
 
-    @Column(name="additional_comments")
+    @Column(name = "additional_comments")
     private String additionalComments;
 
-    @Column(name="final_score")
+    @Column(name = "final_score")
     private int finalScore;
 
-    // Getters and setters
+    // Constructors, getters, and setters
 
-    public Feedback() {
-    }
-
-    public Feedback(Long courseId, int relateRating, int deliveryRating, int confidenceRating, int trainerRating, String enjoyment, String additionalComments) {
-        this.courseId = courseId;
-        this.relateRating = relateRating;
-        this.deliveryRating = deliveryRating;
-        this.confidenceRating = confidenceRating;
+    public Feedback(Long id, int courseid, int relevantAndHelpful, int clearAndUnderstandable, int confidentInApplying, int trainerRating, String enjoyment, String additionalComments, int finalScore) {
+        this.id = id;
+        this.courseid = courseid;
+        this.relevantAndHelpful = relevantAndHelpful;
+        this.clearAndUnderstandable = clearAndUnderstandable;
+        this.confidentInApplying = confidentInApplying;
         this.trainerRating = trainerRating;
         this.enjoyment = enjoyment;
         this.additionalComments = additionalComments;
+        this.finalScore = finalScore;
     }
 
     public Long getId() {
@@ -57,36 +56,36 @@ public class Feedback {
         this.id = id;
     }
 
-    public Long getCourseId() {
-        return courseId;
+    public int getCourseid() {
+        return courseid;
     }
 
-    public void setCourseId(Long courseId) {
-        this.courseId = courseId;
+    public void setCourseid(int courseid) {
+        this.courseid = courseid;
     }
 
-    public int getRelateRating() {
-        return relateRating;
+    public int getRelevantAndHelpful() {
+        return relevantAndHelpful;
     }
 
-    public void setRelateRating(int relateRating) {
-        this.relateRating = relateRating;
+    public void setRelevantAndHelpful(int relevantAndHelpful) {
+        this.relevantAndHelpful = relevantAndHelpful;
     }
 
-    public int getDeliveryRating() {
-        return deliveryRating;
+    public int getClearAndUnderstandable() {
+        return clearAndUnderstandable;
     }
 
-    public void setDeliveryRating(int deliveryRating) {
-        this.deliveryRating = deliveryRating;
+    public void setClearAndUnderstandable(int clearAndUnderstandable) {
+        this.clearAndUnderstandable = clearAndUnderstandable;
     }
 
-    public int getConfidenceRating() {
-        return confidenceRating;
+    public int getConfidentInApplying() {
+        return confidentInApplying;
     }
 
-    public void setConfidenceRating(int confidenceRating) {
-        this.confidenceRating = confidenceRating;
+    public void setConfidentInApplying(int confidentInApplying) {
+        this.confidentInApplying = confidentInApplying;
     }
 
     public int getTrainerRating() {
@@ -120,4 +119,9 @@ public class Feedback {
     public void setFinalScore(int finalScore) {
         this.finalScore = finalScore;
     }
+
+    public Feedback() {
+
+    }
+
 }

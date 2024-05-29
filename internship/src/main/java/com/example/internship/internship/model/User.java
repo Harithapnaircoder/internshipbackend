@@ -20,19 +20,21 @@ public class User {
 
     @Column(name = "role")
     private String role;
+    @Column(name = "course")
+    private String course;
 
     public User() {
     }
 
-    public User(Long id, String fullname, String email, String password, String role) {
+    public User(Long id, String fullname, String email, String password, String role, String course) {
         this.id = id;
         this.fullname = fullname;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.course = course;
     }
 
-    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -71,5 +73,13 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
     }
 }

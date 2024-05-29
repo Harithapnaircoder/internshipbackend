@@ -36,14 +36,14 @@ public class Course {
     private String status;
 
     @Column(name = "final_feedback")
-    private int finalFeedback;
+    private String finalFeedback;
 
     // Getters and setters
 
     public Course() {
     }
 
-    public Course(String courseName, String ou, String trainingType, Date startDate, Date endDate, int batchCount, String trainerName, String status, int finalFeedback) {
+    public Course(String courseName, String ou, String trainingType, Date startDate, Date endDate, int batchCount, String trainerName, String status, String finalFeedback) {
         this.courseName = courseName;
         this.ou = ou;
         this.trainingType = trainingType;
@@ -127,11 +127,11 @@ public class Course {
         this.status = status;
     }
 
-    public int getFinalFeedback() {
+    public String getFinalFeedback() {
         return finalFeedback;
     }
 
-    public void setFinalFeedback(int finalFeedback) {
+    public void setFinalFeedback(String finalFeedback) {
         this.finalFeedback = finalFeedback;
     }
 }
