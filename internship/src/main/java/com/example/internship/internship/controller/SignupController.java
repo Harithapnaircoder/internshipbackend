@@ -32,4 +32,5 @@ public class SignupController {
             return ResponseEntity.ok("Signup successful\nRole: " + user.getRole());
         }
     }
+
 }
