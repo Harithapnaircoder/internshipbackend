@@ -112,7 +112,7 @@ public class CourseController {
                 course.setCourseName(courseName);
                 course.setStatus(status);
                 course.setEndDate(endDate);
-                course.setFinalFeedback(String.valueOf(finalScore)); // Assuming finalFeedback property is a String
+                course.setFinalFeedback(String.valueOf(finalScore));
 
                 courses.add(course);
             }
@@ -122,6 +122,18 @@ public class CourseController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/course/{courseId}")
+    public ResponseEntity<Object> getCourseById(@PathVariable Long courseId) {
+        try {
+            return courseRepository.findById(courseId)
+                    .map(course -> ResponseEntity.ok((Object) course))
+                    .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body("Course not found"));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to retrieve course: " + e.getMessage());
+        }
+    }
+
 
 
 }

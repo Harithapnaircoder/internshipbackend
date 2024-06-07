@@ -7,8 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface CourseRepository extends JpaRepository<Course, Long> {
-
-    Course findByCourseName(String courseName);
+    List<Course> findByCourseName(String courseName);
 
     List<Course> findByOu(String ou);
 
@@ -19,6 +18,4 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
             "ORDER BY c.end_date DESC " +
             "LIMIT 10", nativeQuery = true)
     List<Object[]> findLatestCompletedCoursesWithFeedback();
-
-
 }

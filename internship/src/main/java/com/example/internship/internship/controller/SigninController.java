@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -38,13 +40,25 @@ public class SigninController {
             response.put("userId", userData.getId().toString());
 
             if ("student".equalsIgnoreCase(userData.getRole())) {
-                Course course = courseRepository.findByCourseName(userData.getCourse());
-                if (course != null) {
-                    response.put("course", userData.getCourse());
-                    response.put("courseId", course.getCourseId().toString());
+                List<Course> courses = courseRepository.findByCourseName(userData.getCourse());
+                if (courses != null && !courses.isEmpty()) {
+                    List<Map<String, String>> courseDetails = courses.stream().map(course -> {
+                        Map<String, String> courseMap = new HashMap<>();
+                        courseMap.put("courseId", course.getCourseId().toString());
+                        courseMap.put("courseName", course.getCourseName());
+                        courseMap.put("status", course.getStatus());
+                        courseMap.put("ou", course.getOu());
+                        courseMap.put("Batch count", String.valueOf(course.getBatchCount()));
+                        courseMap.put("Trainer name", course.getTrainingType());
+                        courseMap.put("startDate", course.getStartDate().toString());
+                        courseMap.put("endDate", course.getEndDate().toString());
+                        return courseMap;
+                    }).collect(Collectors.toList());
+
+                    response.put("courses", courseDetails);
                 } else {
                     response.put("status", "error");
-                    response.put("message", "Course not found");
+                    response.put("message", "No courses found for the user");
                     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
                 }
             }
@@ -56,5 +70,4 @@ public class SigninController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
     }
-
 }
